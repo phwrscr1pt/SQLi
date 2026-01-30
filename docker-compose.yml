@@ -9,6 +9,8 @@ services:
       - ./src:/var/www/html
     depends_on:
       - db
+    networks:
+      - sqli_network
 
   db:
     image: mysql:5.7
@@ -20,3 +22,16 @@ services:
       - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3306:3306"
+    networks:
+      - sqli_network
+
+  dvwa:
+    image: vulnerables/web-dvwa
+    ports:
+      - "8081:80"
+    networks:
+      - sqli_network
+
+networks:
+  sqli_network:
+    driver: bridge
