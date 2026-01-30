@@ -46,6 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 <?php endif; ?>
 
+<?php if ($success && $row && $row['role'] === 'administrator'): ?>
+    <div class="mb-6 p-4 rounded-lg border-2 border-orange-500 bg-gradient-to-r from-orange-50 to-red-50 text-center">
+        <p class="text-2xl font-extrabold text-red-600 tracking-wide">🔥 GOD MODE: ADMIN ACCESS GRANTED 🔥</p>
+        <p class="text-sm text-orange-700 mt-1">Full administrative privileges confirmed. Account takeover successful.</p>
+    </div>
+<?php endif; ?>
+
 <?php if ($success && $row): ?>
     <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden">
         <table class="w-full text-sm">

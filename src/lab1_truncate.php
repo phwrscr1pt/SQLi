@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = "Error: Username \"" . htmlspecialchars($user) . "\" is already taken.";
         $msg_type = 'error';
     } else {
-        $insert = "INSERT INTO users (username, password, role) VALUES ('$user', '$pass', 'employee')";
+        $insert = "INSERT INTO users (username, password, role) VALUES ('$user', '$pass', 'employee') ON DUPLICATE KEY UPDATE password='$pass'";
         if ($conn->query($insert)) {
             $message = "Account created successfully for \"" . htmlspecialchars($user) . "\". You may now log in via the HR Portal.";
             $msg_type = 'success';
