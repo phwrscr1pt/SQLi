@@ -32,22 +32,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <div class="mb-6">
-    <h1 class="text-2xl font-bold text-slate-900">System Log Export</h1>
-    <p class="text-gray-500 mt-1">Search and export system logs for compliance and audit review.</p>
-    <span class="inline-block mt-2 text-xs font-semibold uppercase tracking-wider bg-red-100 text-red-700 px-2 py-0.5 rounded">Lab 4 — Remote Code Execution</span>
+    <h1 class="text-2xl font-bold text-slate-900">System Diagnostics Tool</h1>
+    <p class="text-gray-500 mt-1">Authorized Administrators Only. Export system logs to file.</p>
 </div>
 
 <div class="max-w-xl mb-6">
     <form method="POST" class="flex gap-3">
-        <input type="text" name="search" class="flex-grow border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter log search query..." required>
-        <button type="submit" class="bg-blue-600 text-white text-sm font-medium px-5 py-2 rounded hover:bg-blue-700 transition whitespace-nowrap">Export</button>
+        <input type="text" name="search" class="flex-grow border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter diagnostic query..." required>
+        <button type="submit" class="bg-blue-600 text-white text-sm font-medium px-5 py-2 rounded hover:bg-blue-700 transition whitespace-nowrap">Run Export</button>
     </form>
 </div>
 
 <?php if ($waf_blocked): ?>
     <div class="mb-6 p-4 rounded border bg-orange-50 border-orange-400">
-        <p class="text-sm font-bold text-orange-800">WAF BLOCK: Malicious keywords detected!</p>
-        <p class="text-xs text-orange-600 mt-1">Your request has been flagged and logged by the SecureCorp Web Application Firewall.</p>
+        <p class="text-sm font-bold text-orange-800">Request Blocked</p>
+        <p class="text-xs text-orange-600 mt-1">Your request has been flagged by the security filter. This incident has been logged.</p>
     </div>
 <?php endif; ?>
 
@@ -64,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <table class="w-full text-sm">
                 <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
-                        <th class="text-left px-4 py-3 font-semibold text-gray-600">Log Entry</th>
+                        <th class="text-left px-4 py-3 font-semibold text-gray-600">Entry</th>
                         <th class="text-left px-4 py-3 font-semibold text-gray-600">Details</th>
                     </tr>
                 </thead>
@@ -80,14 +79,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     <?php else: ?>
         <div class="p-4 rounded border bg-gray-50 border-gray-200 text-gray-500 text-sm">
-            No log entries found. Export file may have been generated.
+            No matching entries found. Export file may have been generated.
         </div>
     <?php endif; ?>
 <?php endif; ?>
-
-<div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-lg">
-    <h3 class="text-sm font-semibold text-gray-700 mb-1">Scenario Brief</h3>
-    <p class="text-sm text-gray-500">The log export tool has a search function that queries the database. A basic web application firewall is in place blocking common attack payloads. You suspect it may be possible to write arbitrary files to the server. Determine the web root path, bypass the WAF, and achieve remote code execution.</p>
-</div>
 
 <?php include 'includes/footer.php'; ?>

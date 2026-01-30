@@ -28,14 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <div class="mb-6">
-    <h1 class="text-2xl font-bold text-slate-900">Inventory Search</h1>
-    <p class="text-gray-500 mt-1">Search corporate asset records by product name or keyword.</p>
-    <span class="inline-block mt-2 text-xs font-semibold uppercase tracking-wider bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">Lab 2 — Error-Based Extraction</span>
+    <h1 class="text-2xl font-bold text-slate-900">Warehouse Inventory Search</h1>
+    <p class="text-gray-500 mt-1">Search for product ID or name across all warehouse locations.</p>
 </div>
 
 <div class="max-w-xl mb-6">
     <form method="POST" class="flex gap-3">
-        <input type="text" name="search" class="flex-grow border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Search products (e.g. Laptop, Monitor)..." required>
+        <input type="text" name="search" class="flex-grow border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Search by product ID or name..." required>
         <button type="submit" class="bg-blue-600 text-white text-sm font-medium px-5 py-2 rounded hover:bg-blue-700 transition whitespace-nowrap">Search</button>
     </form>
 </div>
@@ -77,10 +76,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     <?php endif; ?>
 <?php endif; ?>
-
-<div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-lg">
-    <h3 class="text-sm font-semibold text-gray-700 mb-1">Scenario Brief</h3>
-    <p class="text-sm text-gray-500">A secret 4-digit PIN code is stored somewhere in this database. The inventory system appears to be running in development mode with verbose error output. Enumerate the database schema to locate the hidden table, discover the correct column, and extract the PIN.</p>
-</div>
 
 <?php include 'includes/footer.php'; ?>
