@@ -70,6 +70,35 @@ INSERT INTO secret_vault (secret_name, pin_code) VALUES
 ('GrandPrize', '7492');
 
 -- -----------------------------------------
+-- Table: library_books
+-- Used by SQLMap Training Labs (GET & POST)
+-- -----------------------------------------
+CREATE TABLE IF NOT EXISTS library_books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    published_year INT
+);
+
+INSERT INTO library_books (title, author, published_year) VALUES
+('Hacking 101', 'Jon Erickson', 2008),
+('SQL for Dummies', 'Allen G. Taylor', 2019),
+('The Art of Deception', 'Kevin Mitnick', 2002);
+
+-- -----------------------------------------
+-- Table: ctf_flags
+-- Hidden flag table — discover via SQLMap enumeration
+-- -----------------------------------------
+CREATE TABLE IF NOT EXISTS ctf_flags (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    flag_name VARCHAR(100) NOT NULL,
+    flag_value VARCHAR(255) NOT NULL
+);
+
+INSERT INTO ctf_flags (flag_name, flag_value) VALUES
+('FinalFlag', 'FLAG{SQLMAP_MASTER_2026}');
+
+-- -----------------------------------------
 -- Application user with FILE privilege for Lab 4 (RCE via INTO OUTFILE)
 -- -----------------------------------------
 CREATE USER IF NOT EXISTS 'app_user'@'%' IDENTIFIED BY 'password';
